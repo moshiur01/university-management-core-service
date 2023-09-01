@@ -99,3 +99,26 @@ model Faculty {
 
   @@map("faculties")
 }
+
+model Buidling {
+  id        String   @id @default(uuid())
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  rooms     Rooms[]
+
+  @@map("building")
+}
+
+model Rooms {
+  id         String   @id @default(uuid())
+  roomNumber String
+  floor      String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  building   Buidling @relation(fields: [buidlingId], references: [id])
+  buidlingId String
+
+  @@map("rooms")
+}
