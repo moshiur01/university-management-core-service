@@ -9,12 +9,10 @@ router.get('/', FacultyController.getAllFromDB);
 
 router.get('/:id', FacultyController.getByIdFromDB);
 
-
 router.post(
-    '/',
-    validateRequest(FacultyValidation.create),
-    FacultyController.insertIntoDB
+  '/',
+  validateRequest(FacultyValidation.create),
+  FacultyController.insertIntoDB
 );
-
 
 export const facultyRoutes = router;
