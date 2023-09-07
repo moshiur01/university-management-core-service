@@ -65,7 +65,6 @@ const getAllFromDB = async (
 };
 
 //*get single building
-
 const getByIdFromDB = async (id: string): Promise<Building | null> => {
   const result = await prisma.building.findUnique({
     where: {
@@ -75,8 +74,35 @@ const getByIdFromDB = async (id: string): Promise<Building | null> => {
   return result;
 };
 
+//*update building title
+
+const updateIntoDB = async (
+  id: string,
+  payload: Partial<Building>
+): Promise<Building> => {
+  const result = await prisma.building.update({
+    where: {
+      id,
+    },
+    data: payload,
+  });
+
+  return result;
+};
+
+//*delete building from db
+const deleteFromDB = async (id: string) => {
+  const result = await prisma.building.delete({
+    where: {
+      id,
+    },
+  });
+  return result;
+};
 export const buildingService = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
+  updateIntoDB,
+  deleteFromDB,
 };

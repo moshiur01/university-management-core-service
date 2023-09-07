@@ -16,4 +16,12 @@ router.post(
 router.get('/', buildingController.getAllFromDB);
 router.get('/:id', buildingController.getDataById);
 
+router.patch(
+  '/:id',
+  validateRequest(buildingValidation.update),
+  buildingController.updateIntoDB
+);
+
+router.delete('/:id', buildingController.deleteFromDB);
+
 export const buildingRoutes = router;

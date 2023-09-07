@@ -42,8 +42,35 @@ const getDataById = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
+//*update into db
+const updateIntoDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req?.params;
+  const payload = req?.body;
+  const result = await buildingService.updateIntoDB(id, payload);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Building title updated successfully',
+    data: result,
+  });
+});
+
+//delete from db
+const deleteFromDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await buildingService.deleteFromDB(id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Building Deleted successfully',
+    data: result,
+  });
+});
 export const buildingController = {
   insertIntoDB,
   getAllFromDB,
   getDataById,
+  updateIntoDB,
+  deleteFromDB,
 };
