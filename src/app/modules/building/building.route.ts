@@ -14,5 +14,6 @@ router.post(
   buildingController.insertIntoDB
 );
 router.get('/', buildingController.getAllFromDB);
+router.get('/:id', buildingController.getDataById);
 
 export const buildingRoutes = router;

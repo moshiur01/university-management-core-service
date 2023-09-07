@@ -64,7 +64,19 @@ const getAllFromDB = async (
   };
 };
 
+//*get single building
+
+const getByIdFromDB = async (id: string): Promise<Building | null> => {
+  const result = await prisma.building.findUnique({
+    where: {
+      id,
+    },
+  });
+  return result;
+};
+
 export const buildingService = {
   insertIntoDB,
   getAllFromDB,
+  getByIdFromDB,
 };
