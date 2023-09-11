@@ -12,6 +12,11 @@ router.post(
   validateRequest(CourseValidation.create),
   courseController.insertIntoDB
 );
+router.post(
+  '/assign-faculties/:id',
+
+  courseController.assignFaculties
+);
 router.patch(
   '/:id',
   validateRequest(CourseValidation.update),

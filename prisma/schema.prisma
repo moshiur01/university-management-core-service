@@ -152,14 +152,14 @@ model CourseToPrerequisite {
   @@map("course_prerequisites")
 }
 
-//Faculty(teacher) Assign for Specific Course model
+// Faculty(teacher) Assign for Specific Course model
 
 model CourseFaculty {
-  courseId  String
-  facultyId String
+  courseId String
+  course   Course @relation(fields: [courseId], references: [id]) //ref field
 
-  course  Course  @relation(fields: [courseId], references: [id])
-  faculty Faculty @relation(fields: [facultyId], references: [id])
+  facultyId String
+  faculty   Faculty @relation(fields: [facultyId], references: [id]) //ref field
 
   @@id([courseId, facultyId])
   @@map("course_faculties")
