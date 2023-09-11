@@ -21,6 +21,9 @@ model AcademicSemester {
   updatedAt  DateTime  @updatedAt
   students   Student[]
 
+  //*relation with semester registration
+  semesterRegistration SemesterRegistration[]
+
   @@map("academic_semesters")
 }
 
@@ -153,7 +156,6 @@ model CourseToPrerequisite {
 }
 
 // Faculty(teacher) Assign for Specific Course model
-
 model CourseFaculty {
   courseId String
   course   Course @relation(fields: [courseId], references: [id]) //ref field
@@ -163,4 +165,27 @@ model CourseFaculty {
 
   @@id([courseId, facultyId])
   @@map("course_faculties")
+}
+
+model SemesterRegistration {
+  id String @id @default(uuid())
+
+  startDate          DateTime
+  endDate            DateTime
+  status             SemesterRegistrationStatus?
+  minimunCredit      Int                         @default(0)
+  maximumCredir      Int                         @default(0)
+  createdAt          DateTime                    @default(now())
+  updatedAt          DateTime                    @updatedAt
+  academicSemesterId String
+
+  academcSemester AcademicSemester @relation(fields: [academicSemesterId], references: [id])
+
+  @@map("semester_registration")
+}
+
+enum SemesterRegistrationStatus {
+  UPCOMING
+  ONGOING
+  ENDED
 }
