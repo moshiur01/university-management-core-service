@@ -172,9 +172,9 @@ model SemesterRegistration {
 
   startDate          DateTime
   endDate            DateTime
-  status             SemesterRegistrationStatus?
+  status             SemesterRegistrationStatus? @default(UPCOMING)
   minimunCredit      Int                         @default(0)
-  maximumCredir      Int                         @default(0)
+  maximumCredit      Int                         @default(0)
   createdAt          DateTime                    @default(now())
   updatedAt          DateTime                    @updatedAt
   academicSemesterId String
