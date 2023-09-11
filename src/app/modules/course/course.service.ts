@@ -6,8 +6,13 @@ import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
+import { asyncForEach } from '../../../shared/utils';
 import { courseSearchableFields } from './course..constrain';
-import { ICourseCreateData, ICourseFilterRequest } from './course.interface';
+import {
+  ICourseCreateData,
+  ICourseFilterRequest,
+  IPreRequisiteCourseRequest,
+} from './course.interface';
 
 const insertIntoDB = async (data: ICourseCreateData): Promise<any> => {
   const { preRequisiteCourses, ...courseData } = data;
@@ -23,18 +28,22 @@ const insertIntoDB = async (data: ICourseCreateData): Promise<any> => {
       throw new ApiError(httpStatus.BAD_REQUEST, 'Unable to create course!!');
     }
 
-    //*create preRequisite for courses
+    //*create preRequisite for courses => make a relation in courses and preRequisite Courses
     if (preRequisiteCourses && preRequisiteCourses.length > 0) {
-      for (let index = 0; index < preRequisiteCourses.length; index++) {
-        const createPrerequisite =
-          await transactionClient.courseToPrerequisite.create({
-            data: {
-              courseId: result?.id,
-              preRequisiteId: preRequisiteCourses[index].courseId,
-            },
-          });
-        console.log(createPrerequisite);
-      }
+      //*loop through preRequisite courses as it comes in form of an array
+      await asyncForEach(
+        preRequisiteCourses,
+        async (preRequisiteCourse: IPreRequisiteCourseRequest) => {
+          const createPrerequisite =
+            await transactionClient.courseToPrerequisite.create({
+              data: {
+                courseId: result?.id, //preRequisite for do the course
+                preRequisiteId: preRequisiteCourse.courseId, //the course is prerequisite to do a new course
+              },
+            });
+          console.log(createPrerequisite);
+        }
+      );
     }
     return result;
   });
@@ -190,29 +199,35 @@ const updateOneInDB = async (
           coursePreRequisite?.courseId && !coursePreRequisite?.isDeleted
       );
 
-      //*handle delete
-      for (let index = 0; index < deletePrerequisite.length; index++) {
-        await transactionClient.courseToPrerequisite.deleteMany({
-          where: {
-            AND: [
-              { courseId: id },
-              {
-                preRequisiteId: deletePrerequisite[index].courseId,
-              },
-            ],
-          },
-        });
-      }
+      //*handle delete preRequisite course
+      await asyncForEach(
+        deletePrerequisite,
+        async (delePreCourse: IPreRequisiteCourseRequest) => {
+          await transactionClient.courseToPrerequisite.deleteMany({
+            where: {
+              AND: [
+                { courseId: id },
+                {
+                  preRequisiteId: delePreCourse.courseId,
+                },
+              ],
+            },
+          });
+        }
+      );
 
-      //*handle create
-      for (let index = 0; index < newPreRequisite.length; index++) {
-        await transactionClient.courseToPrerequisite.create({
-          data: {
-            courseId: id,
-            preRequisiteId: newPreRequisite[index].courseId,
-          },
-        });
-      }
+      //*handle create for a new pre requisite for courses
+      await asyncForEach(
+        newPreRequisite,
+        async (newPreCourse: IPreRequisiteCourseRequest) => {
+          await transactionClient.courseToPrerequisite.create({
+            data: {
+              courseId: id,
+              preRequisiteId: newPreCourse.courseId,
+            },
+          });
+        }
+      );
     }
     return result;
   });
