@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Course, Prisma } from '@prisma/client';
 import httpStatus from 'http-status';
@@ -156,6 +158,22 @@ const getByIdFromDB = async (id: string): Promise<Course | null> => {
   return result;
 };
 
+const updateOneInDB = async (
+  id: string,
+  payload: Partial<ICourseCreateData>
+): Promise<Course | null> => {
+  const { preRequisiteCourses, ...courseData } = payload;
+
+  const result = await prisma.course.update({
+    where: {
+      id: id,
+    },
+    data: courseData,
+  });
+
+  return result;
+};
+
 const deleteByIdFromDB = async (id: string): Promise<Course> => {
   await prisma.courseToPrerequisite.deleteMany({
     where: {
@@ -183,4 +201,5 @@ export const CourseService = {
   getAllFromDB,
   getByIdFromDB,
   deleteByIdFromDB,
+  updateOneInDB,
 };
