@@ -15,4 +15,16 @@ router.post(
   FacultyController.insertIntoDB
 );
 
+router.post(
+  '/assign-courses/:id',
+  validateRequest(FacultyValidation.assignOrRemoveCourses),
+  FacultyController.assignCourses
+);
+
+router.delete(
+  '/remove-courses/:id',
+  validateRequest(FacultyValidation.assignOrRemoveCourses),
+  FacultyController.deleteCourses
+);
+
 export const facultyRoutes = router;
