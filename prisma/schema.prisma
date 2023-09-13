@@ -168,8 +168,7 @@ model CourseFaculty {
 }
 
 model SemesterRegistration {
-  id String @id @default(uuid())
-
+  id                 String                      @id @default(uuid())
   startDate          DateTime
   endDate            DateTime
   status             SemesterRegistrationStatus? @default(UPCOMING)
