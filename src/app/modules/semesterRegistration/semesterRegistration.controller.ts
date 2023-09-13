@@ -44,9 +44,20 @@ const getDataById = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const deleteFromDB = catchAsync(async (req: Request, res: Response) => {
+  const result = await SemesterRegistrationService.deleteFromDB(req.params.id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: ' Registered Semester Data Deleted successfully',
+    data: result,
+  });
+});
 
 export const semesterRegistrationController = {
   insertIntoDB,
   getAllFromDB,
   getDataById,
+  deleteFromDB,
 };

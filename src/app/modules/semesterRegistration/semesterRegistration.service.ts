@@ -128,8 +128,19 @@ const getDataById = async (id: string) => {
   return result;
 };
 
+const deleteFromDB = async (id: string) => {
+  const result = await prisma.semesterRegistration.delete({
+    where: {
+      id,
+    },
+  });
+
+  return result;
+};
+
 export const SemesterRegistrationService = {
   insertIntoDB,
   getAllFromDB,
   getDataById,
+  deleteFromDB,
 };
