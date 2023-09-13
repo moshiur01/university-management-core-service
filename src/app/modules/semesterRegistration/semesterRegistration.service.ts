@@ -128,6 +128,56 @@ const getDataById = async (id: string) => {
   return result;
 };
 
+const updateOneInDB = async (
+  id: string,
+  payload: Partial<SemesterRegistration>
+): Promise<SemesterRegistration> => {
+  const isExist = await prisma.semesterRegistration.findUnique({
+    where: {
+      id,
+    },
+  });
+
+  //*check the id exist in the database
+  if (!isExist) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Semester ID Not Found');
+  }
+
+  //*check the status current state
+  if (
+    payload.status &&
+    isExist.status === SemesterRegistrationStatus.UPCOMING &&
+    payload.status !== SemesterRegistrationStatus.ONGOING
+  ) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'Can only more form upcoming to ongoing'
+    );
+  }
+
+  if (
+    payload.status &&
+    isExist.status === SemesterRegistrationStatus.ONGOING &&
+    payload.status !== SemesterRegistrationStatus.ENDED
+  ) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'Can only more form ongoing to ended'
+    );
+  }
+  const result = await prisma.semesterRegistration.update({
+    where: {
+      id,
+    },
+    data: payload,
+    include: {
+      academcSemester: true,
+    },
+  });
+
+  return result;
+};
+
 const deleteFromDB = async (id: string) => {
   const result = await prisma.semesterRegistration.delete({
     where: {
@@ -143,4 +193,5 @@ export const SemesterRegistrationService = {
   getAllFromDB,
   getDataById,
   deleteFromDB,
+  updateOneInDB,
 };

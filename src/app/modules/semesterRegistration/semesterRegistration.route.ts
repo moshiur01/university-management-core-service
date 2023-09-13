@@ -15,4 +15,10 @@ router.post(
 router.get('/', semesterRegistrationController.getAllFromDB);
 router.get('/:id', semesterRegistrationController.getDataById);
 
-router.get('/:id', semesterRegistrationController.deleteFromDB);
+router.patch(
+  '/:id',
+  validateRequest(semesterRegistrationValidation.update),
+  semesterRegistrationController.updateOneInDB
+);
+
+router.delete('/:id', semesterRegistrationController.deleteFromDB);
