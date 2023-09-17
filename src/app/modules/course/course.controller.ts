@@ -77,7 +77,7 @@ const assignFaculties = catchAsync(async (req: Request, res: Response) => {
 
 const deleteFaculties = catchAsync(async (req: Request, res: Response) => {
   const { id } = req?.params;
-  const result = await CourseService.removeFaculties(id, req?.body?.courses);
+  const result = await CourseService.removeFaculties(id, req?.body?.faculties);
   sendResponse(res, {
     statusCode: httpStatus?.OK,
     success: true,
