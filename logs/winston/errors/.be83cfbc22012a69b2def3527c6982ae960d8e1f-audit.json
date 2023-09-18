@@ -134,6 +134,21 @@
             "date": 1694973931234,
             "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\errors\\phu-2023-18-09-00-error.log",
             "hash": "8cf93316dbeb505544ac9178b8694fb2c5f6bd986e7f128d9e2c77ba769860d5"
+        },
+        {
+            "date": 1694977438849,
+            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\errors\\phu-2023-18-09-01-error.log",
+            "hash": "18db9fba1b8465bf0e7b18cb84834a2ebbbd8401bab7d32464d1dbd1f03cb392"
+        },
+        {
+            "date": 1695009562894,
+            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\errors\\phu-2023-18-09-09-error.log",
+            "hash": "5bd18c66987941bbc938027d8d1db4ba4cfbbe3c0435c23a5ceee36735167f36"
+        },
+        {
+            "date": 1695009878579,
+            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\errors\\phu-2023-18-09-10-error.log",
+            "hash": "4a42bc93a3e5a35e7ac3d454652ba77ffda989383c870953c88edf4aa5397c4c"
         }
     ],
     "hashType": "sha256"
