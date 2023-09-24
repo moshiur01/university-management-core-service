@@ -29,6 +29,9 @@ export const hasTimeConflict = (
     const newStart = new Date(`1970-01-01T${newSlot.startTime}:00`);
     const newEnd = new Date(`1970-01-01T${newSlot.startTime}:00`);
 
+    // existing : 12.30 - 13.30
+    //new slot : 12.50 -13.50
+
     if (newStart < existingEnd && newEnd > existingStart) {
       return true;
     }

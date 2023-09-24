@@ -15,6 +15,7 @@ import { offeredCourseClassScheduleUtils } from './offeredCourseClassSchedule.ut
 const insertIntoDb = async (
   data: OfferedCourseClassSchedule
 ): Promise<OfferedCourseClassSchedule> => {
+  await offeredCourseClassScheduleUtils.checkFacultyAvailable(data);
   await offeredCourseClassScheduleUtils.checkRoomAvailable(data);
 
   // existing : 12.30 - 13.30
