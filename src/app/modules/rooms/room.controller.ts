@@ -4,10 +4,10 @@ import catchAsync from '../../../shared/catchAsync';
 import pick from '../../../shared/pick';
 import sendResponse from '../../../shared/sendResponse';
 import { roomFilterableFields } from './room.constrain';
-import { roomService } from './room.service';
+import { RoomService } from './room.service';
 
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
-  const result = await roomService.insertIntoDB(req.body);
+  const result = await RoomService.insertIntoDB(req.body);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -19,7 +19,7 @@ const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
 const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, roomFilterableFields);
   const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
-  const result = await roomService.getAllFromDB(filters, options);
+  const result = await RoomService.getAllFromDB(filters, options);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -31,7 +31,7 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
 
 const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await roomService.getByIdFromDB(id);
+  const result = await RoomService.getByIdFromDB(id);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -42,7 +42,7 @@ const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
 
 const updateOneInDB = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await roomService.updateOneInDB(id, req.body);
+  const result = await RoomService.updateOneInDB(id, req.body);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -53,7 +53,7 @@ const updateOneInDB = catchAsync(async (req: Request, res: Response) => {
 
 const deleteByIdFromDB = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await roomService.deleteByIdFromDB(id);
+  const result = await RoomService.deleteByIdFromDB(id);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
