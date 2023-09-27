@@ -45,8 +45,35 @@ const getSingleFromDB = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
+const updateOneInDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await offeredCourseClassScheduleService.updateOneInDB(
+    id,
+    req.body
+  );
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Offered Course Class Schedule updated successfully',
+    data: result,
+  });
+});
+
+const deleteByIdFromDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await offeredCourseClassScheduleService.deleteByIdFromDB(id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Offered Course Class Schedule deleted successfully',
+    data: result,
+  });
+});
 export const offeredCourseClassScheduleController = {
   insertIntoDb,
   getAllFromDB,
   getSingleFromDB,
+  updateOneInDB,
+  deleteByIdFromDB,
 };
