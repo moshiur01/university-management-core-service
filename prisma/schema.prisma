@@ -77,6 +77,9 @@ model Student {
   academicFaculty   AcademicFaculty @relation(fields: [academicFacultyId], references: [id])
   academicFacultyId String
 
+  //ref=> semester registration
+  studentSemesterRegistrations StudentSemesterRegistration[]
+
   @@map("students")
 }
 
@@ -191,6 +194,8 @@ model SemesterRegistration {
   offeredCourseSections       OfferedCourseSection[]
   offeredCourseClassSchedules OfferedCourseClassSchedule[]
 
+  studentSemesterRegistrations StudentSemesterRegistration[]
+
   @@map("semester_registration")
 }
 
@@ -275,4 +280,23 @@ enum Weekdays {
   TUESDAY
   WEDNESDAY
   THURSDAY
+}
+
+//*student semester registration
+model StudentSemesterRegistration {
+  id               String   @id @default(uuid())
+  isConfirmed      Boolean? @default(false)
+  totalCreditTaken Int?     @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  //ref
+
+  studentId String
+  student   Student @relation(fields: [studentId], references: [id])
+
+  semesterRegistrationId String
+  semesterRegistraion    SemesterRegistration @relation(fields: [semesterRegistrationId], references: [id])
+
+  @@map("student_semester_registration")
 }

@@ -6,71 +6,6 @@
     "auditLog": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\.228fd376a6af6a362db7957ee7068c6ffb245504-audit.json",
     "files": [
         {
-            "date": 1694366155045,
-            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-10-09-23-success.log",
-            "hash": "df231da07365637e6d07c3ec36440fdbac4b9b89c12f8b309be9167e900d67bc"
-        },
-        {
-            "date": 1694369274060,
-            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-11-09-00-success.log",
-            "hash": "3104812efca7ed4ec80bbb26a6ed2931be0adf362782b2bb56a9e74ca7570833"
-        },
-        {
-            "date": 1694411999980,
-            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-11-09-11-success.log",
-            "hash": "676cb0bcae918feb54fcec0b538e9a09444492f68701243ed05be40b8af45261"
-        },
-        {
-            "date": 1694412002632,
-            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-11-09-12-success.log",
-            "hash": "403e9f078f58f00dc7a346c7182445b4086ab084bba94d6d933459a53580a91e"
-        },
-        {
-            "date": 1694419518640,
-            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-11-09-14-success.log",
-            "hash": "c4c50aab5da8af2fd23747f049090116eddf0eb75b28eee7a0ca9aa1e3b4fa03"
-        },
-        {
-            "date": 1694427032240,
-            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-11-09-16-success.log",
-            "hash": "34d3990753dca6ba5f8f2fb61891dba033b41ac5fa61ecf4637e213280d56fa5"
-        },
-        {
-            "date": 1694430077992,
-            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-11-09-17-success.log",
-            "hash": "38ad08c41e9d2be5a5ba0b1eaa66b6f55558c11cca9a4b17d96dc6cba7ba73ed"
-        },
-        {
-            "date": 1694439222177,
-            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-11-09-19-success.log",
-            "hash": "720943704715152ca77d04d497adab22ba70054d2c576be40fb51b5ab2151107"
-        },
-        {
-            "date": 1694440800618,
-            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-11-09-20-success.log",
-            "hash": "f3cb82c3c182eb5346a2edd6880237000ad78ff6832ae5c02fbf9c3ae856417e"
-        },
-        {
-            "date": 1694447615683,
-            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-11-09-21-success.log",
-            "hash": "e57f616197008313ae3c8f9695db6c88215cf9915df619fd19fe4996139f7e87"
-        },
-        {
-            "date": 1694448066413,
-            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-11-09-22-success.log",
-            "hash": "047c81ab1963405cb66061b233c61dd12447fa4a06ff6788c24ef5d2dce2ab1d"
-        },
-        {
-            "date": 1694454134438,
-            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-11-09-23-success.log",
-            "hash": "50744202a3666df91fa88cff90182a39d33f5b160dbf4f202b1c94ab544524d9"
-        },
-        {
-            "date": 1694579998547,
-            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-13-09-10-success.log",
-            "hash": "ea6ef2f6eb82e91d84da97154f83c251bbc16835986aaa299d48a53b5a70ff14"
-        },
-        {
             "date": 1694584106293,
             "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-13-09-11-success.log",
             "hash": "50c8c851f9d11145681075361fe35b8e68955ebae7a54232996d68897e77fd15"
@@ -144,6 +79,31 @@
             "date": 1695531803386,
             "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-24-09-11-success.log",
             "hash": "2f83c1fd12b1455fb139e1ef539d687294eb1044950ef2b0b79587cade607f25"
+        },
+        {
+            "date": 1695535980683,
+            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-24-09-12-success.log",
+            "hash": "c594effb91d23e9ca848c1b1db4740f5a13ee217b0ecb69138bcbb90beb6659d"
+        },
+        {
+            "date": 1695539382046,
+            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-24-09-13-success.log",
+            "hash": "f8d67a11801615c5065735e4fe1df61f9b84e87fbc7f173ea29a7604aebcebe5"
+        },
+        {
+            "date": 1695750957535,
+            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-26-09-23-success.log",
+            "hash": "4153befcbd03b33d9892e2e410dc88f449ab2f3e51176ca44134bc714f3b851b"
+        },
+        {
+            "date": 1695751726940,
+            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-27-09-00-success.log",
+            "hash": "cfd10e9c7161bad56f1faeecc94cb9751fdefbba803f2cdb56289844aa0966d8"
+        },
+        {
+            "date": 1695792089320,
+            "name": "E:\\P HERO LEVEL 2\\Mission 03 Be a Backend Brainiac Mission\\universtity-management-core-service\\logs\\winston\\successes\\phu-2023-27-09-11-success.log",
+            "hash": "1efb0879755ccd14f559d33086acf8e42f079f30bf94e3bd6850fd380cede855"
         }
     ],
     "hashType": "sha256"
