@@ -80,6 +80,8 @@ model Student {
   //ref=> semester registration
   studentSemesterRegistrations StudentSemesterRegistration[]
 
+  studentSemesterRegistrationCourses StudentSemesterRegistrationCourse[]
+
   @@map("students")
 }
 
@@ -196,6 +198,8 @@ model SemesterRegistration {
 
   studentSemesterRegistrations StudentSemesterRegistration[]
 
+  studentSemesterRegistrationCourses StudentSemesterRegistrationCourse[]
+
   @@map("semester_registration")
 }
 
@@ -221,6 +225,8 @@ model OfferedCourse {
   semesterRegistration   SemesterRegistration   @relation(fields: [semesterRegistrationId], references: [id])
   offeredCourseSections  OfferedCourseSection[]
 
+  studentSemesterRegistrationCourses StudentSemesterRegistrationCourse[]
+
   @@map("offered_courses")
 }
 
@@ -242,6 +248,8 @@ model OfferedCourseSection {
 
   //relation with OfferedCourseClassSchedule
   offeredCourseClassSchedules OfferedCourseClassSchedule[]
+
+  studentSemesterRegistrationCourses StudentSemesterRegistrationCourse[]
 
   @@map("offered_course_sections")
 }
@@ -299,4 +307,25 @@ model StudentSemesterRegistration {
   semesterRegistraion    SemesterRegistration @relation(fields: [semesterRegistrationId], references: [id])
 
   @@map("student_semester_registration")
+}
+
+//*student semester registrarion course
+model StudentSemesterRegistrationCourse {
+  semesterRegistrationId String
+  semesterRegistration   SemesterRegistration @relation(fields: [semesterRegistrationId], references: [id])
+
+  studentId String
+  student   Student @relation(fields: [studentId], references: [id])
+
+  offeredCourseId String
+  offererCourse   OfferedCourse @relation(fields: [offeredCourseId], references: [id])
+
+  offeredCourseSectionId String
+  offeredCourseSection   OfferedCourseSection @relation(fields: [offeredCourseSectionId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([semesterRegistrationId, studentId, offeredCourseId]) //make custom id 
+  @@map("student_semester_registration_courses")
 }

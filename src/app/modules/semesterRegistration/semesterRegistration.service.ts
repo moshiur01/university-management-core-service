@@ -11,12 +11,16 @@ import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
+import { studentSemesterRegistrationCourseService } from '../studentSemesterRegistrationCourse/studentSemesterRegistrationCourse.service';
 import {
   semesterRegistrationRelationalFields,
   semesterRegistrationRelationalFieldsMapper,
   semesterRegistrationSearchableFields,
 } from './semesterRegistration.constrains';
-import { ISemesterRegistrationFilterRequest } from './semesterRegistration.interface';
+import {
+  IEnrollIntoCoursePayload,
+  ISemesterRegistrationFilterRequest,
+} from './semesterRegistration.interface';
 
 const insertIntoDB = async (
   data: SemesterRegistration
@@ -261,6 +265,124 @@ const startMyRegistration = async (
   };
 };
 
+const enrollIntoCourse = async (
+  authUserId: string,
+  payload: IEnrollIntoCoursePayload
+): Promise<{
+  message: string;
+}> => {
+  return studentSemesterRegistrationCourseService.enrollIntoCourse(
+    authUserId,
+    payload
+  );
+};
+
+const withdrawFromCourse = async (
+  authUserId: string,
+  payload: IEnrollIntoCoursePayload
+): Promise<{
+  message: string;
+}> => {
+  return studentSemesterRegistrationCourseService.withdrawFromCourse(
+    authUserId,
+    payload
+  );
+};
+
+//*===confirm registration===//
+
+const confirmMyRegistration = async (
+  authUserId: string
+): Promise<{ message: string }> => {
+  //find ongoing semester
+  const semesterRegistration = await prisma.semesterRegistration.findFirst({
+    where: {
+      status: SemesterRegistrationStatus.ONGOING,
+    },
+  });
+
+  //find student
+  const studentSemesterRegistration =
+    await prisma.studentSemesterRegistration.findFirst({
+      where: {
+        semesterRegistraion: {
+          id: semesterRegistration?.id,
+        },
+        student: {
+          studentId: authUserId,
+        },
+      },
+    });
+
+  if (!studentSemesterRegistration) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'You are not recognized for this semester'
+    );
+  }
+
+  if (studentSemesterRegistration.totalCreditTaken === 0) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'You are not enrolled in any course'
+    );
+  }
+
+  if (
+    studentSemesterRegistration.totalCreditTaken &&
+    semesterRegistration?.minimunCredit &&
+    semesterRegistration.maximumCredit &&
+    (studentSemesterRegistration.totalCreditTaken <
+      semesterRegistration?.minimunCredit ||
+      studentSemesterRegistration.totalCreditTaken >
+        semesterRegistration?.maximumCredit)
+  ) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      `You can take only ${semesterRegistration.minimunCredit} to ${semesterRegistration.maximumCredit} credits`
+    );
+  }
+  await prisma.studentSemesterRegistration.update({
+    where: {
+      id: studentSemesterRegistration.id,
+    },
+    data: {
+      isConfirmed: true,
+    },
+  });
+
+  return {
+    message: 'Your Registration is Confirmed',
+  };
+};
+
+const getMyRegistration = async (authUserId: string) => {
+  const semesterRegistraion = await prisma.semesterRegistration.findFirst({
+    where: {
+      status: SemesterRegistrationStatus.ONGOING,
+    },
+    include: {
+      academcSemester: true,
+    },
+  });
+
+  const studentSemesterRegistration =
+    await prisma.studentSemesterRegistration.findFirst({
+      where: {
+        semesterRegistraion: {
+          id: semesterRegistraion?.id,
+        },
+        student: {
+          studentId: authUserId,
+        },
+      },
+      include: {
+        student: true,
+      },
+    });
+
+  return { semesterRegistraion, studentSemesterRegistration };
+};
 export const SemesterRegistrationService = {
   insertIntoDB,
   getAllFromDB,
@@ -268,4 +390,8 @@ export const SemesterRegistrationService = {
   deleteFromDB,
   updateOneInDB,
   startMyRegistration,
+  enrollIntoCourse,
+  withdrawFromCourse,
+  confirmMyRegistration,
+  getMyRegistration,
 };
